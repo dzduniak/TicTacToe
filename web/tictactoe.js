@@ -74,13 +74,6 @@ function gameOver(board) {
         }
     }
 
-    if (filled === 9) {
-        draw = true;
-        return true;
-    } else {
-        draw = false;
-    }
-
     function test(player) {
         return (board[0][0] === player && board[0][1] === player && board[0][2] === player) ||
             (board[1][0] === player && board[1][1] === player && board[1][2] === player) ||
@@ -92,7 +85,18 @@ function gameOver(board) {
             (board[2][0] === player && board[1][1] === player && board[0][2] === player);
     }
 
-    return test("x") || test("o");
+    draw = false
+
+    if (test("x") || test("o"))
+        return true
+    else {
+        if (filled === 9) {
+            draw = true;
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function empty(board) {
